@@ -1,6 +1,8 @@
 import click
 import json
 from pathlib import Path
+from state import app_state
+import data.db
 
 @click.group()
 def hello():
@@ -23,16 +25,20 @@ def load_config():
 
 if __name__ == "__main__":
     config = load_config()
+    app_state.config = config
 
     if config == None:
         print('Config.json load failed')
         exit(0)
 
     data_path = config['dataPath']
+    app_state.data_path = data_path
     print("dataPath = %s" % config['dataPath'])
 
     Path(data_path) \
         .expanduser() \
         .mkdir(parents=True, exist_ok=True)
+    
+    data.db.init_db()
     
     hello()
