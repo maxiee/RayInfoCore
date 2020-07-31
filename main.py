@@ -2,7 +2,6 @@ import click
 import json
 from pathlib import Path
 from state import app_state
-import data.db
 
 @click.group()
 def hello():
@@ -39,6 +38,7 @@ if __name__ == "__main__":
         .expanduser() \
         .mkdir(parents=True, exist_ok=True)
     
+    import data.db
     data.db.init_db()
     
     hello()
