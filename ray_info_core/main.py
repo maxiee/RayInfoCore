@@ -1,7 +1,7 @@
 import click
 import json
 from pathlib import Path
-from state import app_state
+from .state import app_state
 
 @click.group()
 def hello():
@@ -17,6 +17,9 @@ def b():
 
 hello.add_command(a)
 hello.add_command(b)
+
+def main():
+    print('hello main')
 
 def load_config():
     with open('./config.json', 'r') as f:
