@@ -1,20 +1,16 @@
 from peewee import *
-from state import app_state
+from ray_info_core.state import app_state
 
-db = SqliteDatabase(app_state.get_db_path(), {
-        'journal_mode': 'wal',
-        'foreign_keys': 1,
-        'ignore_check_constraints': 0,
-        'synchronous': 0
-    })
+db = SqliteDatabase(None)
 
-class Author(Model):
-    name = CharField(max_length=128)
-    description = CharField()
-
+class BaseModel(Model):
     class Meta:
         database = db
+
+class Author(BaseModel):
+    name = CharField(max_length=128)
+    description = CharField()
     
 def init_db() -> None:
-    db.connect()
+    db.init(app_state.get_db_path())
     db.create_tables([Author], safe=True)

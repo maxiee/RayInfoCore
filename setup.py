@@ -13,6 +13,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        RayInfoCore=ray_info_core.main:main
+        RayInfoCore=ray_info_core.cli:cli
     ''',
 )
