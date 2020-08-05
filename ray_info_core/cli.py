@@ -3,6 +3,7 @@ import click
 from click.decorators import pass_context
 
 from .state.app_config import AppConfig
+from .data.dao_author import *
 from .data.db import init_db
 
 @click.group()
@@ -16,7 +17,7 @@ def cli(ctx):
 @click.option('--name', type=str)
 @click.pass_obj
 def author_add(ctx, name):
-    click.echo('input author name = %s' % name)
+    dao_author_add(name)
 
 @cli.command()
 def b():
