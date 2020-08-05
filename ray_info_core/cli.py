@@ -13,14 +13,14 @@ def cli(ctx):
     
     init_db(ctx.config)
 
-@cli.command()
+@cli.command(help="add author")
 @click.option('--name', type=str)
 @click.option('--description', type=str, default="")
 @click.pass_obj
 def author_add(ctx, name, description):
     dao_author_add(name, description)
 
-@cli.command()
+@cli.command(help="udpate author")
 @click.option('--name', type=str)
 @click.option('--description', type=str, default="")
 @click.pass_obj
