@@ -1,5 +1,4 @@
 from peewee import *
-from ray_info_core.state import app_state
 
 db = SqliteDatabase(None)
 
@@ -11,6 +10,6 @@ class Author(BaseModel):
     name = CharField(max_length=128)
     description = CharField()
     
-def init_db() -> None:
-    db.init(app_state.get_db_path())
+def init_db(config) -> None:
+    db.init(config.get_db_path())
     db.create_tables([Author], safe=True)
