@@ -15,9 +15,17 @@ def cli(ctx):
 
 @cli.command()
 @click.option('--name', type=str)
+@click.option('--description', type=str, default="")
 @click.pass_obj
-def author_add(ctx, name):
-    dao_author_add(name)
+def author_add(ctx, name, description):
+    dao_author_add(name, description)
+
+@cli.command()
+@click.option('--name', type=str)
+@click.option('--description', type=str, default="")
+@click.pass_obj
+def author_update(ctx, name, description):
+    dao_author_update(name, description)
 
 @cli.command()
 def b():
