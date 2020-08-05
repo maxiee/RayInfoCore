@@ -1,3 +1,4 @@
+from os import name
 import click
 from click.decorators import pass_context
 
@@ -12,8 +13,10 @@ def cli(ctx):
     init_db(ctx.config)
 
 @cli.command()
-def a():
-    click.echo('a')
+@click.option('--name', type=str)
+@click.pass_obj
+def author_add(ctx, name):
+    click.echo('input author name = %s' % name)
 
 @cli.command()
 def b():
