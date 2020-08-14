@@ -9,7 +9,7 @@ def dao_author_get(name: str) -> Author:
 
 def dao_author_add(name : str, description=""):
     if dao_author_is_existed(name):
-        click.echo('author is exist, use dao_author_upadate command.')
+        click.echo('author is existed, use dao_author_upadate command.')
         return
     author = Author()
     author.name = name
